@@ -35,11 +35,28 @@ const MORSE_TABLE = {
     '---..':  '8',
     '----.':  '9',
     '-----':  '0',
+    ' ': ' ',
 };
 
 function decode(expr) {
-    // write your solution here
-}
+    let elements = []; 
+    // Основной массив для работы
+    for (let i = 0; i < expr.length; i += 10) {
+        elements.push(expr.slice(i, i+10).replace(/00/g, '').replace(/10/g, '.').replace(/11/g, '-').replace('**********', ' '));
+    }
+    // length возвращает число элементов этого массива
+    // slice возвращает новый массив, содерж копию части исходного массива
+    // replace возвращает новую строку с заменой
+    // push возвращает новую длину массива
+  
+    elements.map((array, index) => {
+      elements[index] = MORSE_TABLE[array];
+    })
+    // map создаёт новый массив с результатом вызова функции
+  
+    return elements.join('');
+}  
+    // join объединяет все элементы массива в строку
 
 module.exports = {
     decode
